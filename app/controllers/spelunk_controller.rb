@@ -7,7 +7,8 @@ class SpelunkController < ApplicationController
     depth = params[:depth].to_i
     c = Crawler.new(url, depth)
     c.crawl
-    session[:image_id] ||= Image.first
+    #session[:image_id] = Image.first.id
+    render :nothing => true
   end
 
   def photo

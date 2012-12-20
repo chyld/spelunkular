@@ -35,7 +35,7 @@ class Crawler
                       end
           @images << temp_link if !@images.include?(temp_link)
         rescue => e
-          puts "image inner code -> #{e}, temp -> #{temp}"
+          #puts "image inner code -> #{e}, temp -> #{temp}"
         end
       end
 
@@ -49,12 +49,12 @@ class Crawler
           @urls << temp_link if !@urls.include?(temp_link)
           get_links(temp_link, inception+1)
         rescue => e
-          puts "url inner code -> #{e}, temp -> #{temp}"
+          #puts "url inner code -> #{e}, temp -> #{temp}"
         end
       end
 
     rescue => e
-      puts "outer code -> #{e}, link -> #{link}"
+      #puts "outer code -> #{e}, link -> #{link}"
     end
   end
 end

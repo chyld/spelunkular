@@ -18,6 +18,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'launchy'
   gem 'database_cleaner'
+  gem 'ruby-prof'
+  gem 'test-unit'
 end
 
 group :assets do
