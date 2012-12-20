@@ -6,18 +6,16 @@ class SpelunkController < ApplicationController
     url = params[:url]
     depth = params[:depth].to_i
     c = Crawler.new(url, depth)
-    c.crawl
-    #session[:image_id] = Image.first.id
-    render :nothing => true
+    Image.delete_all
+    c.delay.crawl
   end
 
   def photo
-    if Image.any? && session[:image_id].present?
-      image = Image.where('id > ?', session[:image_id]).order(:id).first
-      session[:image_id] = image.try(:id)
-      render :json => image
-    else
-      render :json => nil
+    image = Image.where(:viewed => false).order(:id).first
+    if image
+      image.viewed = true
+      image.save
     end
+    render :json => image
   end
 end

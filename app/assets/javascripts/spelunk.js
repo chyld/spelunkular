@@ -8,6 +8,7 @@ function start_crawling()
 {
   $('form').submit();
   setInterval(get_photos, 250);
+  $('#photos').empty();
   return false;
 }
 

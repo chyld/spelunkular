@@ -1,11 +1,10 @@
 class Crawler
-  attr_accessor :url, :depth, :images, :urls, :a_regex, :i_regex, :h_regex
+  attr_accessor :url, :depth, :urls, :a_regex, :i_regex, :h_regex
 
   def initialize(url, depth)
     @url = url
     @depth = depth
     @urls = []
-    @images = []
     @a_regex = /<a.*?href.*?['"](.*?)['"].*?>/m
     @i_regex = /<img.*?src.*?['"](.*?)['"].*?>/m
     @h_regex = /(https?:\/\/\w+[\.\w]+)/m
@@ -13,8 +12,6 @@ class Crawler
 
   def crawl
     get_links(@url, 0)
-    Image.delete_all
-    @images.each {|i| Image.create(:url => i )}
   end
 
   def get_links(link, inception)
@@ -33,9 +30,9 @@ class Crawler
                       else
                         temp
                       end
-          @images << temp_link if !@images.include?(temp_link)
+          Image.create(:url => temp_link)
         rescue => e
-          #puts "image inner code -> #{e}, temp -> #{temp}"
+          puts "image inner code -> #{e}, temp -> #{temp}"
         end
       end
 
@@ -49,12 +46,12 @@ class Crawler
           @urls << temp_link if !@urls.include?(temp_link)
           get_links(temp_link, inception+1)
         rescue => e
-          #puts "url inner code -> #{e}, temp -> #{temp}"
+          puts "url inner code -> #{e}, temp -> #{temp}"
         end
       end
 
     rescue => e
-      #puts "outer code -> #{e}, link -> #{link}"
+      puts "outer code -> #{e}, link -> #{link}"
     end
   end
 end
