@@ -1,0 +1,21 @@
+*
+{
+  margin: 0px;
+  padding: 0px;
+}
+
+body
+{
+  background-color: #000000;
+}
+
+.photo
+{
+  width: 100px;
+  height: 100px;
+  float: left;
+  border: 1px dashed #cccccc;
+  margin: 5px;
+  background-size: cover !important;
+  background-color: #ffffff !important;
+}

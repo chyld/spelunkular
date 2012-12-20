@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: spelunkular_development
+  pool: 5
+  host: localhost
+  username: chyld
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: spelunkular_test
+  pool: 5
+  host: localhost
+  username: chyld
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: spelunkular_production
+  pool: 5
+  host: localhost
+  username: chyld
+  password:
