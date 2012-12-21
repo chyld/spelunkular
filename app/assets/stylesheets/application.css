@@ -9,6 +9,11 @@ body
   background-color: #000000;
 }
 
+input
+{
+  width: 200px;
+}
+
 .photo
 {
   width: 100px;
